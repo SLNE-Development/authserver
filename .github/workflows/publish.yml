@@ -44,12 +44,6 @@ jobs:
         id: get_version
         run: echo "VERSION=$(./gradlew properties | grep "^version:" | awk '{print $2}')" >> $GITHUB_ENV
 
-      - name: Find and filter JAR files
-        id: find_jars
-        run: |
-          echo "JAR_FILES<<EOF" >> $GITHUB_ENV
-          find . -name "*.jar" | grep -v "javadoc" | grep -v "sources" | grep -v "original" | grep -v "test" >> $GITHUB_ENV
-
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
@@ -57,6 +51,7 @@ jobs:
           name: Release ${{ env.VERSION }}
           draft: false
           prerelease: false
-          files: ${{ env.JAR_FILES }}
+          files: |
+            build/libs/*.jar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
