@@ -8,7 +8,7 @@ import io.ktor.server.cio.*
 import io.ktor.server.engine.*
 
 fun main() {
-    embeddedServer(CIO, port = 25570, host = "0.0.0.0", module = Application::module)
+    embeddedServer(CIO, port = 3002, host = "0.0.0.0", module = Application::module)
         .start(wait = true)
 }
 
