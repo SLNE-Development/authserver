@@ -48,7 +48,7 @@ jobs:
         id: find_jars
         run: |
           echo "JAR_FILES<<EOF" >> $GITHUB_ENV
-          find . -type f -name "*.jar" | grep -v "build/libs" | grep -v "build/distributions" | grep -v "build/tmp" | grep -v "build/classes" | grep -v "build/resources" | grep -v "build/dependency-cache" | grep -v "build/processed-resources" | grep -v "build/processed-classes" | grep -v "build/processed-test-resources" | grep -v "build/processed-test-classes" | grep -v "build/test-results" | grep -v "build/reports
+          find . -name "*.jar" | grep -v "javadoc" | grep -v "sources" | grep -v "original" | grep -v "test" >> $GITHUB_ENV
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
